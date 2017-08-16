@@ -1,6 +1,6 @@
 {
-  "serviceRole": "",
-  "serviceType": "",
+  "serviceRole": "exoservice",
+  "serviceType": "exoservice-type",
   "description": "",
   "author": "",
 }
