@@ -1,5 +1,5 @@
 {
-  "serviceRole": "exoservice",
+  "serviceRole": "ping-service",
   "serviceType": "ping-service",
   "description": "",
   "author": ""
