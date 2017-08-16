@@ -1,6 +1,6 @@
 {
   "serviceRole": "exoservice",
-  "serviceType": "exoservice-type",
+  "serviceType": "ping-service",
   "description": "",
-  "author": "",
+  "author": ""
 }
