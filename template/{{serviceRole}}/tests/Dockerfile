@@ -1,8 +1,8 @@
 FROM nodesource/node
-
-# These steps ensure that npm install is only run when package.json changes
-COPY ./package.json .
+ENV NODE_ENV="test"
 RUN curl -o- -L https://yarnpkg.com/install.sh | bash
-ENV NODE_ENV=""
+
+# These steps ensure that yarn install is only run when package.json changes
+COPY ./package.json .
 RUN $HOME/.yarn/bin/yarn install
 COPY . .
