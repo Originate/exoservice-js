@@ -24,9 +24,11 @@ defineSupportCode(function({Given, When, Then}) {
 
 
   Given(/^an instance of this service$/, function(done) {
-    this.process = new ExoService({  role: serviceConfig.type,
-                                     exocomPort: this.exocomPort,
-                                     exocomHost: 'localhost' })
+    this.process = new ExoService({
+      role: serviceConfig.type,
+      exocomPort: this.exocomPort,
+      exocomHost: 'localhost'
+    })
     this.process.connect()
     this.process.on('online', () => wait.wait(10, done))
   })
@@ -34,8 +36,10 @@ defineSupportCode(function({Given, When, Then}) {
 
   When(/^receiving the "([^"]*)" command$/, function(commandName) {
     this.exocom.reset()
-    this.exocom.send({ service: serviceConfig.type,
-                              name: commandName })
+    this.exocom.send({
+      service: serviceConfig.type,
+      name: commandName
+    })
   })
 
 
