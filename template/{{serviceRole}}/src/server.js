@@ -1,4 +1,6 @@
-module.exports = {
+const {bootstrap} = require('exoservice')
+
+bootstrap({
 
   beforeAll: (done) => {
     // TODO: add asynchronous init code here, or delete the whole block
@@ -10,4 +12,4 @@ module.exports = {
     reply('pong')
   }
 
-}
+})

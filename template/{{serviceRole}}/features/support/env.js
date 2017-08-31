@@ -7,9 +7,8 @@ defineSupportCode(function({After, setDefaultTimeout, setWorldConstructor}) {
   setDefaultTimeout(1000)
   setWorldConstructor(World)
   After(function (_testCaseResult, done) {
-  	this.process.close(() => {
-      this.exocom.close(done)
-    })
+    this.process.kill()
+    this.exocom.close(done)
   })
 
 });

@@ -7,6 +7,7 @@ N = require('nitroglycerin')
 portReservation = require('port-reservation')
 yaml = require('js-yaml')
 wait = require('wait')
+ObservableProcess = require('observable-process')
 
 
 const serviceConfig = yaml.safeLoad(fs.readFileSync('service.yml'), 'utf8')
@@ -24,13 +25,16 @@ defineSupportCode(function({Given, When, Then}) {
 
 
   Given(/^an instance of this service$/, function(done) {
-    this.process = new ExoService({
-      role: serviceConfig.type,
-      exocomPort: this.exocomPort,
-      exocomHost: 'localhost'
+    this.process = new ObservableProcess(serviceConfig.startup.command, {
+      env: {
+        EXOCOM_PORT: this.exocomPort,
+        EXOCOM_HOST: 'localhost',
+        ROLE: serviceConfig.type
+      },
+      stdout: false,
+      stderr: false
     })
-    this.process.connect()
-    this.process.on('online', () => wait.wait(10, done))
+    this.process.wait(serviceConfig.startup['online-text'], done)
   })
 
 

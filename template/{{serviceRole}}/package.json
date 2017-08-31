@@ -1,19 +1,20 @@
 {
   "name": "{{serviceRole}}",
   "dependencies": {
-    "exoservice": "0.25.1"
+    "exoservice": "0.26.0"
   },
   "description": "{{description}}",
   "devDependencies": {
     "chai": "4.1.1",
-    "cucumber": "3.0.0",
+    "cucumber": "3.0.1",
     "dependency-lint": "5.0.1",
-    "exocom-mock": "0.25.1",
+    "exocom-mock": "0.26.0",
     "fs-extra": "4.0.1",
     "js-yaml": "3.9.1",
     "jsdiff-console": "2.2.1",
     "nitroglycerin": "1.1.2",
     "o-tools": "0.8.47",
+    "observable-process": "^3.2.2",
     "port-reservation": "0.3.2"
   },
   "private": "true"
