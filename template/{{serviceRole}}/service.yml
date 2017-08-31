@@ -5,7 +5,7 @@ author: {{author}}
 startup:
   command: node src/server.js
   online-text: online at port
-tests: node_modules/cucumber/bin/cucumber.js
+tests: bin/test
 
 messages:
   receives:

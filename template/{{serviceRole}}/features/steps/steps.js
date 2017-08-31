@@ -1,59 +1,55 @@
-defineSupportCode = require('cucumber').defineSupportCode;
-ExoComMock = require('exocom-mock')
-ExoService = require('exoservice')
-expect = require('chai').expect
-fs = require('fs')
-N = require('nitroglycerin')
-portReservation = require('port-reservation')
-yaml = require('js-yaml')
-wait = require('wait')
-ObservableProcess = require('observable-process')
-
+const { defineSupportCode } = require('cucumber')
+const ExoComMock = require('exocom-mock')
+const { expect } = require('chai')
+const fs = require('fs')
+const N = require('nitroglycerin')
+const portReservation = require('port-reservation')
+const yaml = require('js-yaml')
+const ObservableProcess = require('observable-process')
 
 const serviceConfig = yaml.safeLoad(fs.readFileSync('service.yml'), 'utf8')
 
-
-defineSupportCode(function({Given, When, Then}) {
-
+defineSupportCode(({ Given, When, Then }) => {
   Given(/^an ExoCom server$/, function(done) {
-    portReservation.getPort(N( exocomPort => {
-      this.exocomPort = exocomPort
-      this.exocom = new ExoComMock()
-      this.exocom.listen(exocomPort, done)
-    }))
+    portReservation.getPort(
+      N(exocomPort => {
+        this.exocomPort = exocomPort
+        this.exocom = new ExoComMock()
+        this.exocom.listen(exocomPort, done)
+      })
+    )
   })
-
 
   Given(/^an instance of this service$/, function(done) {
     this.process = new ObservableProcess(serviceConfig.startup.command, {
       env: {
         EXOCOM_PORT: this.exocomPort,
         EXOCOM_HOST: 'localhost',
-        ROLE: serviceConfig.type
+        ROLE: serviceConfig.type,
       },
       stdout: false,
-      stderr: false
+      stderr: false,
     })
     this.process.wait(serviceConfig.startup['online-text'], done)
   })
-
 
   When(/^receiving the "([^"]*)" command$/, function(commandName) {
     this.exocom.reset()
     this.exocom.send({
       service: serviceConfig.type,
-      name: commandName
+      name: commandName,
     })
   })
 
-
-  Then(/^this service replies with a "([^"]*)" message/, function(expectedMessageName, done) {
-    this.exocom.onReceive( () => {
+  Then(/^this service replies with a "([^"]*)" message/, function(
+    expectedMessageName,
+    done
+  ) {
+    this.exocom.onReceive(() => {
       const receivedMessages = this.exocom.receivedMessages
       expect(receivedMessages).to.have.length(1)
       expect(receivedMessages[0].name).to.equal(expectedMessageName)
       done()
     })
   })
-
-});
+})

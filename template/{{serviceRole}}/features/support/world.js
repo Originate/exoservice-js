@@ -1,4 +1,3 @@
-function World() {
-}
+function World() {}
 
-module.exports = World;
+module.exports = World
