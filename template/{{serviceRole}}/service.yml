@@ -5,7 +5,6 @@ author: {{author}}
 startup:
   command: node src/server.js
   online-text: online at port
-tests: bin/test
 
 messages:
   receives:
@@ -14,3 +13,8 @@ messages:
     - pong
 
 dependencies:
+
+development:
+  scripts:
+    start: node src/server.js
+    test: bin/test
