@@ -1,3 +1,7 @@
+# 0.27.0 (2017-09-14)
+
+* Update to dev/prod dockerfile format
+
 # 0.26.0 (2017-08-31)
 
 * Update exoservice to 0.26.0
