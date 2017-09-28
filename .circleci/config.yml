@@ -5,13 +5,13 @@ jobs:
       - image: circleci/buildpack-deps
     working_directory: ~/exoservice-js
     steps:
-      - run: echo 'export PATH=$HOME/exoservice-js:$PATH' > setup_env
-      - run: source setup_env
       - checkout
       - setup_remote_docker
       - run:
           name: install exosphere
           command: curl --output exo --location --fail https://github.com/Originate/exosphere/releases/download/v0.26.2/exo-linux-amd64 && chmod +x exo
+      - run: echo 'export PATH=$HOME/exoservice-js:$PATH' > setup_env
+      - run: source setup_env
       - run:
           name: run tests
           command: exo template test
