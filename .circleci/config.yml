@@ -4,10 +4,9 @@ jobs:
     docker:
       - image: circleci/buildpack-deps
     working_directory: ~/exoservice-js
-    environment:
-       BASH_ENV: ~/.bashrc
     steps:
-      - run: echo 'export PATH=$HOME/exoservice-js:$PATH' >> $BASH_ENV
+      - run: echo 'export PATH=$HOME/exoservice-js:$PATH' > setup_env
+      - run: source setup_env
       - checkout
       - setup_remote_docker
       - run:
