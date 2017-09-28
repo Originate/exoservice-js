@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 set -ex
 
-./node_modules/.bin/cucumber-js
+cucumber-js

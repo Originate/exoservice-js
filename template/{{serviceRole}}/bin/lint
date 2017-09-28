@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 set -ex
 
-./node_modules/.bin/eslint src features "$@"
+eslint src features "$@"
