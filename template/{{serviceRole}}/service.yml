@@ -12,9 +12,8 @@ messages:
   sends:
     - pong
 
-dependencies:
-
 development:
   scripts:
     start: node src/server.js
     test: bin/test
+  dependencies:
